@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+  frontend:
+    # Utilisez le nom de l'image que vous avez construite localement
+    image: angular-demo-1
+    ports:
+      - "4200:80"
+    container_name: frontend-angular
+
+  backend:
+    # Utilisez le nom de l'image que vous avez construite localement
+    image: support-ticket-backend
+    ports:
+      - "3000:3000"
+    container_name: backend-nodejs
+    env_file:
+      - .env
+
+
+    # environment:
+    #   - MONGODB_URI=mongodb+srv://****
+    #   - SECRET_KEY=***
+    #   - EMAIL_USER=***
+    #   - EMAIL_PASS=**
+    #   - TOKEN_EXPIRATION=**
+
+   
