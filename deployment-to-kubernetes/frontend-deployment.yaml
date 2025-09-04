@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: angular-demo-1:latest
+          image: angular-demo-6:latest
           imagePullPolicy: IfNotPresent  
           ports:
             - containerPort: 80
