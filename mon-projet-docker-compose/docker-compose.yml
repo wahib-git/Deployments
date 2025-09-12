@@ -1,23 +1,30 @@
-version: '3.8'
+#version: '3.8'
 
 services:
 
   frontend:
     # Utilisez le nom de l'image que vous avez construite localement
-    image: angular-demo-1
+    image: support-ticket-frontend-local-dc:latest
     ports:
       - "4200:80"
     container_name: frontend-angular
 
   backend:
     # Utilisez le nom de l'image que vous avez construite localement
-    image: support-ticket-backend
+    image: support-ticket-backend-nodeuser:latest
     ports:
       - "3000:3000"
     container_name: backend-nodejs
     env_file:
-      - .env
+      - .env  
+    volumes:
+      - images_data:/app/public/images   #  volume nommé
 
+volumes:
+  images_data:   # Docker gère la persistance ici
+
+    # volumes:
+    #   - ./public/images:/app/public/images  # montage direct (non persistant si le conteneur est supprimé)
 
     # environment:
     #   - MONGODB_URI=mongodb+srv://****
@@ -26,4 +33,4 @@ services:
     #   - EMAIL_PASS=**
     #   - TOKEN_EXPIRATION=**
 
-   
+  
