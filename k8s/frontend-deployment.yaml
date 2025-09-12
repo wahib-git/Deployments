@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: angular-demo-6:latest
+          image: support-ticket-frontend-local-kubernetes:latest
           imagePullPolicy: IfNotPresent  
           ports:
             - containerPort: 80
