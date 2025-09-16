@@ -1,2 +1,3 @@
 .env
 backend-secret.yaml
+mon-projet-docker-compose/public/images

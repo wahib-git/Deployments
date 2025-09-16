@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
-  namespace: support-ticket
+  namespace: support-ticket-management-system
 spec:
   replicas: 1
   selector:
@@ -23,7 +23,7 @@ spec:
         - name: copy-initial-images
           image: support-ticket-backend-nodeuser:latest
           imagePullPolicy: IfNotPresent
-          command: ["sh", "-c", "cp -r /app/public/images/* /mnt/images/ || true"]
+          command: ["sh", "-c", "cp -rn /app/public/images/* /mnt/images/ || true"]
           volumeMounts:
             - name: images-storage
               mountPath: /mnt/images
@@ -40,10 +40,3 @@ spec:
           volumeMounts:
             - name: images-storage
               mountPath: /app/public/images
-
-              
-      # volumes:
-      #   - name: images-storage
-      #     persistentVolumeClaim:
-      #       claimName: images-pvc
-      
