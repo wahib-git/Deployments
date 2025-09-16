@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: support-ticket
+  namespace: support-ticket-management-system
 spec:
   replicas: 1
   selector:
@@ -16,6 +16,14 @@ spec:
       containers:
         - name: frontend
           image: support-ticket-frontend-local-kubernetes:latest
-          imagePullPolicy: IfNotPresent  
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: frontend-nginx-config
